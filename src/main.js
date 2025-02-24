@@ -8,8 +8,9 @@ const g = new game.Game()
 event.add_listeners(g)
 
 // load fonts
-const cardCharacters = new FontFace('CardCharacters', 'url(../fonts/cardcharacters.ttf)')
-const cardCharactersNarrow = new FontFace('CardCharactersNarrow', 'url(../fonts/cardcharactersnarrow.ttf)')
+//const cardCharacters = new FontFace('CardCharacters', 'url(../fonts/cardcharacters.ttf)')
+const cardCharacters = new FontFace('CardCharacters', 'url(https://raw.githubusercontent.com/Mike-Arnold/freecell/refs/heads/main/fonts/cardcharacters.ttf)')
+const cardCharactersNarrow = new FontFace('CardCharactersNarrow', 'url(https://raw.githubusercontent.com/Mike-Arnold/freecell/refs/heads/main/fonts/cardcharactersnarrow.ttf)')
 // draw after loading fonts
 Promise.all([
     cardCharacters.load(), 
