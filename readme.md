@@ -1,5 +1,5 @@
 # Four deck freecell
 
-[View the html](./index.html)
+[Play the game](https://mike-arnold.github.io/freecell/)
 
 There are four decks and four suits by default.
