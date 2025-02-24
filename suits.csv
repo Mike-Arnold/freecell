@@ -1,0 +1,10 @@
+suit,symbol,color,suit_size
+heart,♥,red,1
+diamond,♦,red,1
+club,♣,black,1
+spade,♠,black,1
+swirl,֍,green,0.7
+spinner,߷,green,0.8
+mark,※,blue,0.9
+knot,⌘,blue,1
+dagger,†,black,1

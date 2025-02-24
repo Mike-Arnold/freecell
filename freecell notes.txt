@@ -1,0 +1,20 @@
+♠♣♥♦
+
+⁕⁎
+
+♡♢♤♧
+
+⚜֍߷※⌘
+
+left click without moving to auto-find a spot
+
+use an animation to move cards where they should be
+
+notice when the game is over
+	do what?
+
+save game
+
+undo button
+
+fix: sometimes places on tableau instead of free space
