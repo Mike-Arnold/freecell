@@ -199,7 +199,9 @@ export function remove_deep_parents(g) {
     // mark selections as unselectable if too deep
     for (let selection of g.selections) {
         let { row, column } = selection
-        if (row <= maxRowPerColumn[column] - g.stack_limit) {
+        selection.stack_size = maxRowPerColumn[column] - row
+        // if (row <= maxRowPerColumn[column] - g.stack_limit) {
+        if (selection.stack_size >= g.stack_limit) {
             selection.selectable = false
             // console.log(`Setting selectable=false: row ${row}, column ${column}`)
         }

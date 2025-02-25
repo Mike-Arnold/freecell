@@ -220,6 +220,7 @@ export class Game {
         let bases = this.num_open_bases
 
         this.stack_limit = (spaces+1) * Math.pow(2, bases)
+        this.smaller_stack_limit = this.stack_limit/2
     }
 
     count_open_free_spaces() {

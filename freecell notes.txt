@@ -17,4 +17,6 @@ save game
 
 undo button
 
+new puzzle button
+
 fix: sometimes places on tableau instead of free space
