@@ -96,7 +96,7 @@ function find_closest(g) {
 }
 
 export function drop_onto_base(g) {
-    if (!g.dragging_card.stack_size) return
+    if (!g.dragging_card.stack_size) g.dragging_card.stack_size = 1
     if (g.dragging_card.stack_size > g.smaller_stack_limit) return
     // move dragging card away from wherever it is
     g.dragging_card.move_out()
