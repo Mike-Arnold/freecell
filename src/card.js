@@ -199,9 +199,9 @@ export function remove_deep_parents(g) {
     // mark selections as unselectable if too deep
     for (let selection of g.selections) {
         let { row, column } = selection
-        selection.stack_size = maxRowPerColumn[column] - row
+        selection.stack_size = maxRowPerColumn[column] - row + 1
         // if (row <= maxRowPerColumn[column] - g.stack_limit) {
-        if (selection.stack_size >= g.stack_limit) {
+        if (selection.stack_size > g.stack_limit) {
             selection.selectable = false
             // console.log(`Setting selectable=false: row ${row}, column ${column}`)
         }
@@ -239,10 +239,11 @@ function find_candidates(g) {
 
     g.cards.forEach(c => {
         // can't pick yourself
-        //if (c == g.dragging_card) return
         if (c.dragging) return
         // only open cards
         if (c.card_over) return
+        // no cards on free spaces or foundations
+        if (c.free_space || c.foundation) return
         // picky about color
         if (c.suit_color == g.dragging_card.suit_color) return
         // picky about rank

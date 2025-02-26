@@ -27,6 +27,10 @@ export function add_listeners(g) {
                 c.selectable // found by population_selections
             ) {
                 c.dragging = true
+                if (c.stack_size) {
+                    // console.log("stack size", c.stack_size)
+                    // console.log("stack limit", g.stack_limit)
+                }
                 g.dragging_card = c
                 g.offsetX = mouseX - c.x
                 g.offsetY = mouseY - c.y
@@ -61,12 +65,16 @@ export function add_listeners(g) {
         if (g.dragging_card) {
             if (g.closest_parent_card) {
                 card.drop_onto_parent_card(g)
+                // console.log("dropping onto parent")
             } else if (g.closest_free_space) {
                 free_space.drop_onto_free_space(g)
+                // console.log("dropping onto free space")
             } else if (g.closest_foundation) {
                 foundation.drop_onto_foundation(g)
+                // console.log("drogging onto foundation")
             } else if (g.closest_base) {
                 base.drop_onto_base(g)
+                // console.log("drogging onto base")
             }
             
             g.dragging_card.arrange_stack()
