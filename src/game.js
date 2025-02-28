@@ -47,6 +47,10 @@ export class Game {
 
         this.deal()
         this.selections = []
+
+        this.moves = []
+        this.move_index = 0
+        this.undone_moves = []
     }
     
     set_timers() {
@@ -202,7 +206,7 @@ export class Game {
             if (!card.card_under.dragging) return
             if (card.is_child()) {
                 card.dragging = true
-                console.log(card.suit, card.rank, "is a child")
+                // console.log(card.suit, card.rank, "is a child")
                 found_child = true
             }
         })
@@ -239,5 +243,18 @@ export class Game {
                 this.num_open_bases += 1
             }
         })
+    }
+
+    undo() {
+        let last_move = this.moves.pop()
+        this.move_index = this.moves.length
+        if (last_move) {
+            this.undone_moves.push(last_move)
+            last_move.undo(this)
+        }
+    }
+
+    redo() {
+
     }
 }

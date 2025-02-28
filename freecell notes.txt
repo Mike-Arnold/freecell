@@ -15,10 +15,11 @@ notice when the game is over
 
 save game
 
-undo button
+redo button
+merge all move logic
+
+fix not highlighting when moving back
 
 new puzzle button
 
-fix: sometimes places on tableau instead of free space
-
-count moves
+count moves and show on screen

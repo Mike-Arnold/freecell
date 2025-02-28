@@ -89,6 +89,13 @@ export class Card {
     }
 
     move_out() {
+        // remove card from tableau
+        this.column = null
+        this.row = null
+        if (this.card_under) {
+            this.card_under.card_over = null
+            this.card_under = null
+        }
         // move card out of current free space (if any)
         if (this.free_space) {
             this.free_space.current_card = null
@@ -101,10 +108,11 @@ export class Card {
             if (index >= 0) {
                 current_cards.splice(index, 1)
             }
-            if (current_cards == []) {
-                this.foundation.current_suit = null
-                this.foundation.current_rank = null
-            }
+            this.foundation.update_suit_and_rank()
+            // if (current_cards == []) {
+            //     this.foundation.current_suit = null
+            //     this.foundation.current_rank = null
+            // }
 
             this.foundation = null
         }
@@ -112,13 +120,6 @@ export class Card {
         if (this.base) {
             this.base.current_card = null
             this.base = null
-        }
-        // remove card from tableau
-        this.column = null
-        this.row = null
-        if (this.card_under) {
-            this.card_under.card_over = null
-            this.card_under = null
         }
     }
     
@@ -139,11 +140,13 @@ export class Card {
         }
     }
 
-    arrange_stack() {
+    arrange_stack(g) {
         if (this.card_over) {
             this.card_over.column = this.column
             this.card_over.row = this.row + 1
-            this.card_over.arrange_stack()
+
+            this.card_over.move_to_end(g)
+            this.card_over.arrange_stack(g)
         }
     }
 }

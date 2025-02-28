@@ -3,8 +3,23 @@ import * as card from './card.js'
 import * as free_space from './free_space.js'
 import * as foundation from './foundation.js'
 import * as base from './base.js'
+import { Move } from './move.js'
 
 export function add_listeners(g) {
+
+    g.canvas.addEventListener("wheel", (event) => {
+        if (event.shiftKey) {
+            if (event.deltaY < 0) {
+                // console.log("Redo")
+                g.redo()
+            } else if (event.deltaY > 0) {
+                // console.log("Undo")
+                g.undo()
+            }
+    
+            event.preventDefault()
+        }
+    }, { passive: false }) // required to prevent default
 
     g.canvas.addEventListener('pointerdown', (e) => {
         if (e.button == 2) return // right mouse button
@@ -54,6 +69,7 @@ export function add_listeners(g) {
         card.find_hovering_card(g, e) //card to pick up
 
         // places to put the cards
+        if (!g.dragging_card) return
         card.find_hovering_parent(g)
         free_space.find_hovering(g)
         foundation.find_hovering(g)
@@ -64,20 +80,28 @@ export function add_listeners(g) {
     g.canvas.addEventListener('pointerup', (e) => {
         if (g.dragging_card) {
             if (g.closest_parent_card) {
+                let move = new Move(g, "parent")
+                g.moves.push(move)
                 card.drop_onto_parent_card(g)
                 // console.log("dropping onto parent")
             } else if (g.closest_free_space) {
+                let move = new Move(g, "free_space")
+                g.moves.push(move)
                 free_space.drop_onto_free_space(g)
                 // console.log("dropping onto free space")
             } else if (g.closest_foundation) {
+                let move = new Move(g, "foundation")
+                g.moves.push(move)
                 foundation.drop_onto_foundation(g)
                 // console.log("drogging onto foundation")
             } else if (g.closest_base) {
+                let move = new Move(g, "base")
+                g.moves.push(move)
                 base.drop_onto_base(g)
                 // console.log("drogging onto base")
             }
             
-            g.dragging_card.arrange_stack()
+            g.dragging_card.arrange_stack(g)
             g.dragging_card = null
             card.clear_dragging(g)
         }
@@ -164,20 +188,26 @@ function auto_move_to_foundations(g, limit = 0) {
             if (!match) return
 
             // move dragging card away from wherever it is
+            g.dragging_card = c
+            g.closest_foundation = f
+            let move = new Move(g, "foundation")
+            g.moves.push(move)
             c.move_out()
             // associate card with foundation
             f.current_cards.push(c)
             c.foundation = f
             // update foundation stats
-            f.current_rank = c.rank
-            f.current_rank_index = c.rank_index
-            f.current_suit = c.suit
+            f.update_suit_and_rank()
+            // f.current_rank = c.rank
+            // f.current_rank_index = c.rank_index
+            // f.current_suit = c.suit
             // move the card to the end of the list of cards
             let index = g.cards.indexOf(c)
             if (index != -1) {
                 g.cards.push(g.cards.splice(index, 1)[0])
             }
             matched_at_least_once = true
+            g.dragging_card = null
         })
     })
 
