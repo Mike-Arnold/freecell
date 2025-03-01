@@ -135,18 +135,18 @@ function find_closest(g) {
     })
 }
 
-export function drop_onto_foundation(g) {
-    // move dragging card away from wherever it is
-    g.dragging_card.move_out()
-    // associate card with foundation
-    g.closest_foundation.current_cards.push(g.dragging_card)
-    g.dragging_card.foundation = g.closest_foundation
-    // update foundation stats
-    g.closest_foundation.update_suit_and_rank()
-    // g.closest_foundation.current_rank = g.dragging_card.rank
-    // g.closest_foundation.current_rank_index = g.dragging_card.rank_index
-    // g.closest_foundation.current_suit = g.dragging_card.suit
-}
+// export function drop_onto_foundation(g) {
+//     // move dragging card away from wherever it is
+//     g.dragging_card.move_out()
+//     // associate card with foundation
+//     g.closest_foundation.current_cards.push(g.dragging_card)
+//     g.dragging_card.foundation = g.closest_foundation
+//     // update foundation stats
+//     g.closest_foundation.update_suit_and_rank()
+//     // g.closest_foundation.current_rank = g.dragging_card.rank
+//     // g.closest_foundation.current_rank_index = g.dragging_card.rank_index
+//     // g.closest_foundation.current_suit = g.dragging_card.suit
+// }
 
 export function clear_highlights(g) {
     g.hovering_foundation = null

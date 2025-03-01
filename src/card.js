@@ -278,15 +278,15 @@ function find_closest(g) {
     })
 }
 
-export function drop_onto_parent_card(g) {
-    // move dragging card away from wherever it is
-    g.dragging_card.move_out()
-    // associate card with parent
-    g.closest_parent_card.card_over = g.dragging_card
-    g.dragging_card.card_under = g.closest_parent_card
-    g.dragging_card.column = g.closest_parent_card.column
-    g.dragging_card.row = g.closest_parent_card.row + 1
-}
+// export function drop_onto_parent_card(g) {
+//     // move dragging card away from wherever it is
+//     g.dragging_card.move_out()
+//     // associate card with parent
+//     g.closest_parent_card.card_over = g.dragging_card
+//     g.dragging_card.card_under = g.closest_parent_card
+//     g.dragging_card.column = g.closest_parent_card.column
+//     g.dragging_card.row = g.closest_parent_card.row + 1
+// }
 
 export function clear_dragging(g) {
     g.cards.forEach(c => {

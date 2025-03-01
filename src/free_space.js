@@ -88,13 +88,13 @@ function find_closest(g) {
     })
 }
 
-export function drop_onto_free_space(g) {
-    // move dragging card away from wherever it is
-    g.dragging_card.move_out()
-    // associate card with free space
-    g.closest_free_space.current_card = g.dragging_card
-    g.dragging_card.free_space = g.closest_free_space
-}
+// export function drop_onto_free_space(g) {
+//     // move dragging card away from wherever it is
+//     g.dragging_card.move_out()
+//     // associate card with free space
+//     g.closest_free_space.current_card = g.dragging_card
+//     g.dragging_card.free_space = g.closest_free_space
+// }
 
 export function clear_highlights(g) {
     g.hovering_free_space = null
