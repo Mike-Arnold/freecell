@@ -73,12 +73,12 @@ export class Foundation extends Card {
 }
 
 export function find_hovering(g) {
+    if (g.dragging_card.stack_size > 1) return
     find_candidates(g)
     find_closest(g)
 }
 
 function find_candidates(g) {
-    if (!g.dragging_card) return
     let d = g.dragging_card
 
     g.hovering_foundation = null

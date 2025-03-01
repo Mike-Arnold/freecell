@@ -228,7 +228,6 @@ export function find_hovering_card(g, e) { //card to pick up
 }
 
 export function find_hovering_parent(g) {
-    if (!g.dragging_card) return
     find_candidates(g)
     find_closest(g)
 }

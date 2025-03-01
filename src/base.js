@@ -50,12 +50,12 @@ export class Base extends Card {
 }
 
 export function find_hovering(g) {
+    if (g.dragging_card.stack_size > g.smaller_stack_limit) return
     find_candidates(g)
     find_closest(g)
 }
 
 function find_candidates(g) {
-    if (!g.dragging_card) return
     let d = g.dragging_card
 
     g.hovering_base = null

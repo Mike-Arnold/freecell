@@ -8,6 +8,8 @@
 
 left click without moving to auto-find a spot
 
+add current spot to list of possible spots, even though it looks invalid
+
 use an animation to move cards where they should be
 
 notice when the game is over
@@ -19,6 +21,8 @@ redo button
 merge all move logic
 
 fix not highlighting when moving back
+
+fix moving stack onto free space
 
 new puzzle button
 

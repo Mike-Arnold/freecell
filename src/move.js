@@ -42,7 +42,29 @@ export class Move {
     }
 
     do() {
+        this.moving_card.move_out()
 
+        if (moving_to == "parent") {
+            g.closest_parent_card.card_over = this.moving_card
+            this.moving_card.card_under = g.closest_parent_card
+            this.moving_card.column = g.closest_parent_card.column
+            this.moving_card.row = g.closest_parent_card.row + 1
+        }
+        if (moving_to == "free_space") {
+            g.closest_free_space.current_card = this.moving_card
+            this.moving_card.free_space = g.closest_free_space
+        }
+        if (moving_to == "foundation") {
+            g.closest_foundation.current_cards.push(this.moving_card)
+            this.moving_card.foundation = g.closest_foundation
+            f.update_suit_and_rank()
+        }
+        if (moving_to == "base") {
+            g.closest_base.current_card = this.moving_card
+            this.moving_card.base = g.closest_base
+            this.moving_card.column = g.closest_base.column
+            this.moving_card.row = 0
+        }
     }
 
     undo(g) {
@@ -64,6 +86,7 @@ export class Move {
         }
         if (this.old_foundation) {
             this.old_foundation.current_cards.push(this.moving_card)
+            this.new_foundation.update_suit_and_rank()
         }
         if (this.old_base) {
             this.old_base.current_card = this.moving_card
@@ -143,6 +166,7 @@ export function drop_onto_foundation(g) {
     // associate card with foundation
     g.closest_foundation.current_cards.push(g.dragging_card)
     g.dragging_card.foundation = g.closest_foundation
+    f.update_suit_and_rank()
     // update foundation stats
     g.closest_foundation.current_rank = g.dragging_card.rank
     g.closest_foundation.current_rank_index = g.dragging_card.rank_index

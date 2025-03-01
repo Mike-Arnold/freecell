@@ -70,6 +70,9 @@ export function add_listeners(g) {
 
         // places to put the cards
         if (!g.dragging_card) return
+        if (!g.dragging_card.stack_size) {
+            g.dragging_card.stack_size = 1
+        }
         card.find_hovering_parent(g)
         free_space.find_hovering(g)
         foundation.find_hovering(g)
