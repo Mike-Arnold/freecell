@@ -31,17 +31,10 @@ export class Base extends Card {
     position_base(g) {
         let total_cols = g.num_columns
         let mid_x = (window.innerWidth - 10) / 2
-        let left_x = mid_x - total_cols/2 * (this.width+10) - g.spacer_width/2
+        let width_per_space = this.width + g.spacer_width
 
-        this.x = left_x + this.column * (this.width + g.spacer_width)
-        this.y = this.row * (this.height + g.spacer_width) + g.spacer_width
-        
-        if (this.column >= 0) {
-            this.x = (window.innerWidth - 10)/2 + (this.column-g.num_columns/2)*(this.width+10)
-        }
-        if (this.column >= 0) {
-            this.y = this.height*2 + g.spacer_width*4 + (this.row*this.height/5.5)
-        }
+        this.x = mid_x + (this.column-total_cols/2) * width_per_space
+        this.y = this.height*g.rows + g.spacer_width*4 + (this.row*this.height/5.5)
     }
 
     draw_base(g) {

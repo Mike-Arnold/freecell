@@ -32,13 +32,15 @@ export class Foundation extends Card {
     }
 
     position_foundation(g) {
-        let rows = 2
-        let total_cols = (g.num_free_spaces + g.num_decks*g.num_suits) / rows
+        let total_cols = (g.num_free_spaces + g.num_decks*g.num_suits)
+        let cols_per_row = total_cols / g.rows
         let mid_x = (window.innerWidth - 10) / 2
-        let left_x = mid_x - total_cols/2 * (this.width+10) - g.spacer_width/2
-        let free_spaces = g.num_free_spaces / rows
+        let width_per_space = this.width + g.spacer_width
 
-        this.x = left_x + (free_spaces + this.column) * (this.width + g.spacer_width) + g.spacer_width
+        let left_x = mid_x - (cols_per_row * width_per_space - g.spacer_width) / 2
+        let free_space_cols = g.num_free_spaces / g.rows
+
+        this.x = left_x + (free_space_cols + this.column) * width_per_space + g.spacer_width
         this.y = this.row * (this.height + g.spacer_width) + g.spacer_width
     }
 

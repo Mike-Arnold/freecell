@@ -25,6 +25,13 @@ export class Game {
         this.rows = 2
         this.num_free_spaces = 14
         this.num_columns = 14
+
+        // this.num_decks = 1
+        // this.num_suits = 4
+        // this.rows = 1
+        // this.num_free_spaces = 4
+        // this.num_columns = 8
+
         this.max_row = 15
         this.scale = 1.15
         this.spacer_width = 10
@@ -66,8 +73,8 @@ export class Game {
         this.find_canvas_dimensions()
 
         // spacers to the left and right of each card space
-        let free_space_cols = this.num_free_spaces / 2
-        let foundation_cols = this.num_decks * this.num_suits / 2
+        let free_space_cols = this.num_free_spaces / this.rows
+        let foundation_cols = this.num_decks * this.num_suits / this.rows
         let num_spacers_above = 1 + free_space_cols + 1 + foundation_cols + 1
         let num_spacers_below = 1 + this.num_columns
 
@@ -87,7 +94,7 @@ export class Game {
         this.canvas.height = window.innerHeight - this.spacer_width*2
         let card_height = 7*20*this.scale
         this.find_max_row()
-        this.max_card_y = card_height*3 + this.spacer_width*4 + (this.max_row*card_height/5.5)
+        this.max_card_y = card_height*(this.rows+1) + this.spacer_width*4 + (this.max_row*card_height/5.5)
         if (this.canvas.height < this.max_card_y) {
             this.canvas.width = window.innerWidth - this.spacer_width*3
             this.canvas.height = this.max_card_y
