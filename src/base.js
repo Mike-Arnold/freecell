@@ -94,22 +94,6 @@ function find_closest(g) {
     })
 }
 
-// export function drop_onto_base(g) {
-//     if (!g.dragging_card.stack_size) {
-//         g.dragging_card.stack_size = 1
-//         // console.log("no stack size, defaulting to 1")
-//     }
-//     // console.log("stack size", g.dragging_card.stack_size)
-//     if (g.dragging_card.stack_size > g.smaller_stack_limit) return
-//     // move dragging card away from wherever it is
-//     g.dragging_card.move_out()
-//     // associate card with free space
-//     g.closest_base.current_card = g.dragging_card
-//     g.dragging_card.base = g.closest_base
-//     g.dragging_card.column = g.closest_base.column
-//     g.dragging_card.row = 0
-// }
-
 export function clear_highlights(g) {
     g.hovering_base = null
     g.closest_base = null

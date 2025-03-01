@@ -79,7 +79,6 @@ export class Card {
         if (
             x > this.x && x < this.x + this.width &&
             y > this.y && y < this.y + this.height &&
-            // !this.card_over // edit this to allow for moving stacks
             this.selectable
         ) {
             return true
@@ -167,7 +166,6 @@ export function populate_selections(g, limit=0) {
         if (c.is_child() && !c.card_under.selectable) {
             g.selections.push(c.card_under)
             c.card_under.selectable = true
-            // console.log(c.suit, c.rank, " is child of ", c.card_under.suit, c.card_under.rank)
             found_a_selection = true
         }
     })
@@ -179,7 +177,6 @@ export function populate_selections(g, limit=0) {
 
 export function remove_deep_parents(g) {
     g.find_stack_limit()
-    // console.log("Max stack size is", g.stack_limit)
 
     let maxRowPerColumn = {}
 
@@ -192,16 +189,12 @@ export function remove_deep_parents(g) {
         maxRowPerColumn[column] = Math.max(maxRowPerColumn[column], row)
     }
 
-    // console.log("Max row per column:", maxRowPerColumn)
-
     // mark selections as unselectable if too deep
     for (let selection of g.selections) {
         let { row, column } = selection
         selection.stack_size = maxRowPerColumn[column] - row + 1
-        // if (row <= maxRowPerColumn[column] - g.stack_limit) {
         if (selection.stack_size > g.stack_limit) {
             selection.selectable = false
-            // console.log(`Setting selectable=false: row ${row}, column ${column}`)
         }
     }
 }
@@ -277,16 +270,6 @@ function find_closest(g) {
         }
     })
 }
-
-// export function drop_onto_parent_card(g) {
-//     // move dragging card away from wherever it is
-//     g.dragging_card.move_out()
-//     // associate card with parent
-//     g.closest_parent_card.card_over = g.dragging_card
-//     g.dragging_card.card_under = g.closest_parent_card
-//     g.dragging_card.column = g.closest_parent_card.column
-//     g.dragging_card.row = g.closest_parent_card.row + 1
-// }
 
 export function clear_dragging(g) {
     g.cards.forEach(c => {

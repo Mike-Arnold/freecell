@@ -61,6 +61,8 @@ export class Move {
             this.moving_card.column = this.new_base.column
             this.moving_card.row = 0
         }
+
+        this.moving_card.arrange_stack(g)
     }
 
     undo(g) {

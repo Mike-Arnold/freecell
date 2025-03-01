@@ -22,8 +22,6 @@ merge all move logic
 
 fix not highlighting when moving back
 
-fix moving stack onto free space
-
 new puzzle button
 
 count moves and show on screen
