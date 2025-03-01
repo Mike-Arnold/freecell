@@ -85,22 +85,26 @@ export function add_listeners(g) {
             if (g.closest_parent_card) {
                 let move = new Move(g, "parent")
                 g.moves.push(move)
-                card.drop_onto_parent_card(g)
+                move.do(g)
+                // card.drop_onto_parent_card(g)
                 // console.log("dropping onto parent")
             } else if (g.closest_free_space) {
                 let move = new Move(g, "free_space")
                 g.moves.push(move)
-                free_space.drop_onto_free_space(g)
+                move.do(g)
+                // free_space.drop_onto_free_space(g)
                 // console.log("dropping onto free space")
             } else if (g.closest_foundation) {
                 let move = new Move(g, "foundation")
                 g.moves.push(move)
-                foundation.drop_onto_foundation(g)
+                move.do(g)
+                // foundation.drop_onto_foundation(g)
                 // console.log("drogging onto foundation")
             } else if (g.closest_base) {
                 let move = new Move(g, "base")
                 g.moves.push(move)
-                base.drop_onto_base(g)
+                move.do(g)
+                // base.drop_onto_base(g)
                 // console.log("drogging onto base")
             }
             
@@ -116,7 +120,7 @@ export function add_listeners(g) {
 
         // auto_move_to_foundations(g)
         card.populate_selections(g)
-        card.remove_deep_parents(g)
+        // card.remove_deep_parents(g)
     })
 }
 
@@ -195,12 +199,15 @@ function auto_move_to_foundations(g, limit = 0) {
             g.closest_foundation = f
             let move = new Move(g, "foundation")
             g.moves.push(move)
-            c.move_out()
-            // associate card with foundation
-            f.current_cards.push(c)
-            c.foundation = f
-            // update foundation stats
-            f.update_suit_and_rank()
+            move.do(g)
+
+            // c.move_out()
+            // // associate card with foundation
+            // f.current_cards.push(c)
+            // c.foundation = f
+            // // update foundation stats
+            // f.update_suit_and_rank()
+
             // f.current_rank = c.rank
             // f.current_rank_index = c.rank_index
             // f.current_suit = c.suit

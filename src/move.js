@@ -41,25 +41,25 @@ export class Move {
         }
     }
 
-    do() {
+    do(g) {
         this.moving_card.move_out()
 
-        if (moving_to == "parent") {
+        if (this.moving_to == "parent") {
             g.closest_parent_card.card_over = this.moving_card
             this.moving_card.card_under = g.closest_parent_card
             this.moving_card.column = g.closest_parent_card.column
             this.moving_card.row = g.closest_parent_card.row + 1
         }
-        if (moving_to == "free_space") {
+        if (this.moving_to == "free_space") {
             g.closest_free_space.current_card = this.moving_card
             this.moving_card.free_space = g.closest_free_space
         }
-        if (moving_to == "foundation") {
+        if (this.moving_to == "foundation") {
             g.closest_foundation.current_cards.push(this.moving_card)
             this.moving_card.foundation = g.closest_foundation
-            f.update_suit_and_rank()
+            g.closest_foundation.update_suit_and_rank()
         }
-        if (moving_to == "base") {
+        if (this.moving_to == "base") {
             g.closest_base.current_card = this.moving_card
             this.moving_card.base = g.closest_base
             this.moving_card.column = g.closest_base.column
@@ -107,41 +107,7 @@ export class Move {
         }
     }
 }
-/* 
-function move_out() {
-    // remove card from tableau
-    this.column = null
-    this.row = null
-    if (this.card_under) {
-        this.card_under.card_over = null
-        this.card_under = null
-    }
-    // move card out of current free space (if any)
-    if (this.free_space) {
-        this.free_space.current_card = null
-        this.free_space = null
-    }
-    // move card out of current foundation (if any)
-    if (this.foundation) {
-        let current_cards = this.foundation.current_cards
-        let index = current_cards.length-1
-        if (index >= 0) {
-            current_cards.splice(index, 1)
-        }
-        if (current_cards == []) {
-            this.foundation.current_suit = null
-            this.foundation.current_rank = null
-        }
 
-        this.foundation = null
-    }
-    // move card out of current base (if any)
-    if (this.base) {
-        this.base.current_card = null
-        this.base = null
-    }
-}
- */
 export function drop_onto_parent_card(g) {
     // move dragging card away from wherever it is
     g.dragging_card.move_out()

@@ -109,11 +109,6 @@ export class Card {
                 current_cards.splice(index, 1)
             }
             this.foundation.update_suit_and_rank()
-            // if (current_cards == []) {
-            //     this.foundation.current_suit = null
-            //     this.foundation.current_rank = null
-            // }
-
             this.foundation = null
         }
         // move card out of current base (if any)
