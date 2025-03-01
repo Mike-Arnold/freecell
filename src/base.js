@@ -17,7 +17,7 @@ export class Base extends Card {
 
         this.current_card = null
 
-        this.hovering = false
+        // this.hovering = false
         this.highlighted = false
     }
 
@@ -84,21 +84,21 @@ function find_candidates(g) {
 function find_closest(g) {
     g.bases.forEach(c => {
         if (c == g.closest_base) {
-            c.hovering = true
+            // c.hovering = true
             c.highlighted = true
             g.hovering_base = c
         } else {
-            c.hovering = false
+            // c.hovering = false
             c.highlighted = false
         }
     })
 }
 
 export function clear_highlights(g) {
-    g.hovering_base = null
-    g.closest_base = null
+    // g.hovering_base = null
+    // g.closest_base = null
     g.bases.forEach(b => {
-        b.hovering = false
+        // b.hovering = false
         b.highlighted = false
     })
 }

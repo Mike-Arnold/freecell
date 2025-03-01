@@ -7,6 +7,8 @@
 ⚜֍߷※⌘
 
 left click without moving to auto-find a spot
+but on touch screen, left click selects card
+	touch somewhere else to move card
 
 add current spot to list of possible spots, even though it looks invalid
 
@@ -16,11 +18,6 @@ notice when the game is over
 	do what?
 
 save game
-
-redo button
-merge all move logic
-
-fix not highlighting when moving back
 
 new puzzle button
 

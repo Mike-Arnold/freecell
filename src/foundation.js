@@ -20,7 +20,7 @@ export class Foundation extends Card {
         this.current_rank = null
         this.current_rank_index = null
 
-        this.hovering = false
+        // this.hovering = false
         this.highlighted = false
     }
 
@@ -115,12 +115,12 @@ function find_candidates(g) {
 function find_closest(g) {
     g.foundations.forEach(c => {
         if (c == g.closest_foundation) {
-            c.hovering = true
+            // c.hovering = true
             c.highlighted = true
             g.hovering_foundation = c
             let top_card = c.current_cards.at(-1)
             if (top_card) {
-                top_card.hovering = true
+                // top_card.hovering = true
                 top_card.highlighted = true
             }
         } else {
@@ -128,7 +128,7 @@ function find_closest(g) {
             c.highlighted = false
             let top_card = c.current_cards.at(-1)
             if (top_card) {
-                top_card.hovering = false
+                // top_card.hovering = false
                 top_card.highlighted = false
             }
         }
@@ -136,10 +136,10 @@ function find_closest(g) {
 }
 
 export function clear_highlights(g) {
-    g.hovering_foundation = null
-    g.closest_foundation = null
+    // g.hovering_foundation = null
+    // g.closest_foundation = null
     g.foundations.forEach(c => {
-        c.hovering = false
+        // c.hovering = false
         c.highlighted = false
     })
 }

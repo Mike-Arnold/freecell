@@ -40,10 +40,6 @@ export function add_listeners(g) {
                 c.selectable // found by population_selections
             ) {
                 c.dragging = true
-                if (c.stack_size) {
-                    // console.log("stack size", c.stack_size)
-                    // console.log("stack limit", g.stack_limit)
-                }
                 g.dragging_card = c
                 g.offsetX = mouseX - c.x
                 g.offsetY = mouseY - c.y
@@ -102,11 +98,15 @@ export function add_listeners(g) {
             card.clear_dragging(g)
         }
 
-        card.clear_highlights(g)
-        free_space.clear_highlights(g)
-        foundation.clear_highlights(g)
-        base.clear_highlights(g)
+        clear_all_highlights(g)
     })
+}
+
+function clear_all_highlights(g) {
+    card.clear_highlights(g)
+    free_space.clear_highlights(g)
+    foundation.clear_highlights(g)
+    base.clear_highlights(g)
 }
 
 function pick_highlight(g) {
@@ -122,44 +122,46 @@ function pick_highlight(g) {
     let fd_distance = null
     let b_distance = null
 
+    let values = []
+
     if (g.closest_parent_card) {
         let c = g.closest_parent_card
         c_distance = Math.sqrt(Math.abs(c.x - d.x)**2 + Math.abs(c.y - d.y)**2)
+        values.push(c_distance)
     }
     if (g.closest_free_space && !is_parent) {
         let fs = g.closest_free_space
         fs_distance = Math.sqrt(Math.abs(fs.x - d.x)**2 + Math.abs(fs.y - d.y)**2)
+        values.push(fs_distance)
     }
     if (g.closest_foundation && !is_parent) {
         let fd = g.closest_foundation
         fd_distance = Math.sqrt(Math.abs(fd.x - d.x)**2 + Math.abs(fd.y - d.y)**2)
+        values.push(fd_distance)
     }
     if (g.closest_base) {
         let b = g.closest_base
         b_distance = Math.sqrt(Math.abs(b.x - d.x)**2 + Math.abs(b.y - d.y)**2)
+        values.push(b_distance)
     }
 
-    let values = [c_distance, fs_distance, fd_distance, b_distance].filter(v => v !== null)
+    clear_all_highlights(g)
+
     let min_value = values.length > 0 ? Math.min(...values) : null
-    
     if (!min_value) return
 
     if (c_distance == min_value) {
-        foundation.clear_highlights(g)
-        free_space.clear_highlights(g)
-        base.clear_highlights(g)
+        // g.closest_parent_card.hovering = true
+        g.closest_parent_card.highlighted = true
     } else if (fs_distance == min_value) {
-        card.clear_highlights(g)
-        foundation.clear_highlights(g)
-        base.clear_highlights(g)
+        // g.closest_free_space.hovering = true
+        g.closest_free_space.highlighted = true
     } else if (fd_distance == min_value) {
-        card.clear_highlights(g)
-        free_space.clear_highlights(g)
-        base.clear_highlights(g)
+        // g.closest_foundation.hovering = true
+        g.closest_foundation.highlighted = true
     } else if (b_distance == min_value) {
-        card.clear_highlights(g)
-        foundation.clear_highlights(g)
-        free_space.clear_highlights(g)
+        // g.closest_base.hovering = true
+        g.closest_base.highlighted = true
     }
 }
 

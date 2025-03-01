@@ -17,7 +17,7 @@ export class FreeSpace extends Card {
 
         this.current_card = null
 
-        this.hovering = false
+        // this.hovering = false
         this.highlighted = false
     }
 
@@ -78,21 +78,21 @@ function find_candidates(g) {
 function find_closest(g) {
     g.free_spaces.forEach(c => {
         if (c == g.closest_free_space) {
-            c.hovering = true
+            // c.hovering = true
             c.highlighted = true
             g.hovering_free_space = c
         } else {
-            c.hovering = false
+            // c.hovering = false
             c.highlighted = false
         }
     })
 }
 
 export function clear_highlights(g) {
-    g.hovering_free_space = null
-    g.closest_free_space = null
+    // g.hovering_free_space = null
+    // g.closest_free_space = null
     g.free_spaces.forEach(c => {
-        c.hovering = false
+        // c.hovering = false
         c.highlighted = false
     })
 }

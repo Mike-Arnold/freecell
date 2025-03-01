@@ -21,7 +21,7 @@ export class Card {
         this.foundation = null
         this.base = null
 
-        this.hovering = false
+        // this.hovering = false
         this.highlighted = false
     }
 
@@ -203,14 +203,14 @@ export function find_hovering_card(g, e) { //card to pick up
     if (g.dragging_card) return
     g.hovering_card = null
     g.cards.forEach(c => {
-        c.hovering = false
+        // c.hovering = false
         c.highlighted = false
         if (c.is_hovering(e.offsetX, e.offsetY)) {
             g.hovering_card = c
         }
     })
     if (g.hovering_card) {
-        g.hovering_card.hovering = true
+        // g.hovering_card.hovering = true
         g.hovering_card.highlighted = true
     }
 }
@@ -261,11 +261,11 @@ function find_closest(g) {
     g.cards.forEach(c => {
         if (c == g.dragging_card) return
         if (c == g.closest_parent_card) {
-            c.hovering = true
+            // c.hovering = true
             c.highlighted = true
             g.hovering_card = c
         } else {
-            c.hovering = false
+            // c.hovering = false
             c.highlighted = false
         }
     })
@@ -278,9 +278,9 @@ export function clear_dragging(g) {
 }
 
 export function clear_highlights(g) {
-    g.closest_parent_card = null
+    // g.closest_parent_card = null
     g.cards.forEach(c => {
-        c.hovering = false
+        // c.hovering = false
         c.highlighted = false
     })
 }
