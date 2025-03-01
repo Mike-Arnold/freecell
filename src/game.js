@@ -16,7 +16,9 @@ export class Game {
         this.bright_red = "rgb(255, 68, 59)"
         this.dark_red = "rgb(30, 18, 18)"
         this.bright_green = "rgb(50, 216, 76)"
+        this.dark_green = "rgb(17, 29, 17)"
         this.bright_blue = "rgb(12, 131, 255)"
+        this.dark_blue = "rgb(17, 17, 29)"
 
         this.num_decks = 4
         this.num_suits = 4
@@ -65,12 +67,12 @@ export class Game {
 
         // spacers to the left and right of each card space
         let free_space_cols = this.num_free_spaces / 2
-        let ace_space_cols = this.num_decks * 4 / 2
-        let num_spacers_above = 1 + free_space_cols + 1 + ace_space_cols + 1
+        let foundation_cols = this.num_decks * this.num_suits / 2
+        let num_spacers_above = 1 + free_space_cols + 1 + foundation_cols + 1
         let num_spacers_below = 1 + this.num_columns
 
         // full card spaces
-        let num_cards_above = free_space_cols + ace_space_cols
+        let num_cards_above = free_space_cols + foundation_cols
         let num_cards_below = this.num_columns
 
         let max_card_width_above = ( this.canvas.width - num_spacers_above * this.spacer_width ) / num_cards_above
@@ -114,6 +116,13 @@ export class Game {
             this.bright_green, this.bright_green,
             this.bright_blue, this.bright_blue
         ]
+
+        let back_colors = [
+            this.dark_red, this.dark_red,
+            this.dark_grey, this.dark_grey,
+            this.dark_green, this.dark_green,
+            this.dark_blue, this.dark_blue
+        ]
         
         for (let suit of this.suits.slice(0, this.num_suits)) {
             for (let rank of this.ranks) {
@@ -121,7 +130,8 @@ export class Game {
                 let suit_index = this.suits.indexOf(suit)
                 let suit_size = this.suit_sizes[suit_index]
                 let suit_color = suit_colors[suit_index]
-                const c = new Card(this.scale, 0, 0, rank, rank_index, suit, suit_size, suit_color)
+                let back_color = back_colors[suit_index]
+                const c = new Card(this.scale, 0, 0, rank, rank_index, suit, suit_size, suit_color, back_color)
                 this.cards.push(c)
             }
         }

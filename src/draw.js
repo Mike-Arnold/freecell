@@ -42,7 +42,7 @@ function draw_card(ctx, g, c) {
         back_color = g.dark_red
     }
 
-    draw_card_border(ctx, g, c, back_color, g.light_grey)
+    draw_card_border(ctx, g, c, c.back_color, g.light_grey)
     c.angle = 0
     draw_corner(ctx, g, c)
     c.angle = Math.PI

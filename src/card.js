@@ -1,6 +1,6 @@
 
 export class Card {
-    constructor(scale = 1.15, x=10, y=10, rank="A", rank_index=0, suit="♠", suit_size=1, suit_color="black") {
+    constructor(scale = 1.15, x=10, y=10, rank="A", rank_index=0, suit="♠", suit_size=1, suit_color="black", back_color ="black") {
         this.x = x
         this.y = y
         this.scale = scale
@@ -14,6 +14,7 @@ export class Card {
         this.suit = suit
         this.suit_size = suit_size
         this.suit_color = suit_color
+        this.back_color = back_color
 
         this.column = null
         this.row = null
