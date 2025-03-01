@@ -3,7 +3,7 @@ export class Move {
     constructor(g, moving_to="none") {
         g.move_index = g.moves.length
         g.undone_moves = []
-        // console.log(g.move_index)
+        console.log(moving_to)
         this.moving_card = g.dragging_card
         this.moving_to = moving_to
 

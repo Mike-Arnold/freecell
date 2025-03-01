@@ -216,6 +216,8 @@ export function find_hovering_card(g, e) { //card to pick up
 }
 
 export function find_hovering_parent(g) {
+    g.hovering_card = null
+    g.closest_parent_card = null
     find_candidates(g)
     find_closest(g)
 }
@@ -223,9 +225,7 @@ export function find_hovering_parent(g) {
 function find_candidates(g) {
     let d = g.dragging_card
 
-    g.hovering_card = null
     let closest_distance = null
-    g.closest_parent_card = null
 
     g.cards.forEach(c => {
         // can't pick yourself

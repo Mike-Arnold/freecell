@@ -44,6 +44,8 @@ export class FreeSpace extends Card {
 }
 
 export function find_hovering(g) {
+    g.hovering_free_space = null
+    g.closest_free_space = null
     if (g.dragging_card.stack_size > 1) return
     find_candidates(g)
     find_closest(g)
@@ -51,10 +53,7 @@ export function find_hovering(g) {
 
 function find_candidates(g) {
     let d = g.dragging_card
-
-    g.hovering_free_space = null
     let closest_distance = null
-    g.closest_free_space = null
 
     g.free_spaces.forEach(c => {
         if (c.current_card) return
