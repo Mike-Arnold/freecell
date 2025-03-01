@@ -41,24 +41,24 @@ export class Move {
         this.moving_card.move_out()
 
         if (this.moving_to == "parent") {
-            g.closest_parent_card.card_over = this.moving_card
-            this.moving_card.card_under = g.closest_parent_card
-            this.moving_card.column = g.closest_parent_card.column
-            this.moving_card.row = g.closest_parent_card.row + 1
+            this.new_card_under.card_over = this.moving_card
+            this.moving_card.card_under = this.new_card_under
+            this.moving_card.column = this.new_card_under.column
+            this.moving_card.row = this.new_card_under.row + 1
         }
         if (this.moving_to == "free_space") {
-            g.closest_free_space.current_card = this.moving_card
-            this.moving_card.free_space = g.closest_free_space
+            this.new_free_space.current_card = this.moving_card
+            this.moving_card.free_space = this.new_free_space
         }
         if (this.moving_to == "foundation") {
-            g.closest_foundation.current_cards.push(this.moving_card)
-            this.moving_card.foundation = g.closest_foundation
-            g.closest_foundation.update_suit_and_rank()
+            this.new_foundation.current_cards.push(this.moving_card)
+            this.moving_card.foundation = this.new_foundation
+            this.new_foundation.update_suit_and_rank()
         }
         if (this.moving_to == "base") {
-            g.closest_base.current_card = this.moving_card
-            this.moving_card.base = g.closest_base
-            this.moving_card.column = g.closest_base.column
+            this.new_base.current_card = this.moving_card
+            this.moving_card.base = this.new_base
+            this.moving_card.column = this.new_base.column
             this.moving_card.row = 0
         }
     }

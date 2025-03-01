@@ -10,10 +10,8 @@ export function add_listeners(g) {
     g.canvas.addEventListener("wheel", (event) => {
         if (event.shiftKey) {
             if (event.deltaY < 0) {
-                // console.log("Redo")
                 g.redo()
             } else if (event.deltaY > 0) {
-                // console.log("Undo")
                 g.undo()
             }
     

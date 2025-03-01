@@ -255,6 +255,10 @@ export class Game {
     }
 
     redo() {
-        
+        if (this.undone_moves.length > 0) {
+            let move = this.undone_moves.pop()
+            this.moves.push(move)
+            move.do(this)
+        }
     }
 }
