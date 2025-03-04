@@ -8,7 +8,6 @@ export class Game {
     constructor() {
         this.canvas = document.getElementById('gameCanvas')
         this.ctx = this.canvas.getContext('2d')
-        this.scroll_bar_active = false
         
         this.background_grey = "rgb(24, 24, 24)"
         this.dark_grey = "rgb(32, 32, 32)"
@@ -98,9 +97,7 @@ export class Game {
         if (this.canvas.height < this.max_card_y) {
             this.canvas.width = window.innerWidth - this.spacer_width*3
             this.canvas.height = this.max_card_y
-            this.scroll_bar_active
         }
-        // this.canvas.height = Math.max(window.innerHeight - 20, this.canvas.width * .55)
     }
 
     find_max_row() {
