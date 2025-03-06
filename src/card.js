@@ -138,6 +138,7 @@ export class Card {
     }
 
     arrange_stack(g) {
+        this.move_to_end(g)
         if (this.card_over) {
             this.card_over.column = this.column
             this.card_over.row = this.row + 1

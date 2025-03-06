@@ -17,6 +17,7 @@ export class Move {
 
         if (moving_to == "parent") {
             this.new_card_under = g.closest_parent_card
+            this.new_card_under_old_card_over = this.new_card_under.card_over // test if this works
             this.new_card_under_new_card_over = this.moving_card
             this.new_column = this.new_card_under.column
             this.new_row = this.new_card_under.row + 1
@@ -84,14 +85,14 @@ export class Move {
         }
         if (this.old_foundation) {
             this.old_foundation.current_cards.push(this.moving_card)
-            this.new_foundation.update_suit_and_rank()
+            this.old_foundation.update_suit_and_rank()
         }
         if (this.old_base) {
             this.old_base.current_card = this.moving_card
         }
 
         if (this.new_card_under) {
-            this.new_card_under.card_over = null
+            this.new_card_under.card_over = this.new_card_under_old_card_over
         }
         if (this.new_free_space) {
             this.new_free_space.current_card = null
