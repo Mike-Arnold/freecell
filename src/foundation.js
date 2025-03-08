@@ -37,7 +37,7 @@ export class Foundation extends Card {
         let mid_x = (window.innerWidth - 10) / 2
         let width_per_space = this.width + g.spacer_width
 
-        let left_x = mid_x - (cols_per_row * width_per_space - g.spacer_width) / 2
+        let left_x = mid_x - (cols_per_row * width_per_space / 2 + g.spacer_width)
         let free_space_cols = g.num_free_spaces / g.rows
 
         this.x = left_x + (free_space_cols + this.column) * width_per_space + g.spacer_width
